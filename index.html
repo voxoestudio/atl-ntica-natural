@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5 Magnésios - Fórmula Premium</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@400;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* =========================================
+           PALETA DE CORES PREMIUM E VARIÁVEIS
+        ========================================= */
+        :root {
+            --aqua-light: #E6F5F1; 
+            --aqua-accent: #B2DFDB; 
+            --gold: #D4AF37;            
+            --gold-light: #F3E5AB;
+            --gold-hover: #C5A028;
+            --text-dark: #1A1A1A;
+            --text-muted: #6C757D;
+            --text-light: #F8F9FA; 
+            --bg-offwhite: #E6F5F1; 
+            --glass-bg: rgba(230, 245, 241, 0.85); 
+            --glass-border: rgba(0, 0, 0, 0.05);
+            --shadow-soft: 0 10px 30px rgba(0,0,0,0.05);
+            --shadow-strong: 0 20px 50px rgba(0,0,0,0.1); 
+            --radius-lg: 20px;
+            --radius-md: 12px;
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* =========================================
+           RESET E BASE
+        ========================================= */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-offwhite);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, .font-title {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-dark);
+        }
+
+        img { max-width: 100%; height: auto; display: block; }
+        a { text-decoration: none; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+        .text-center { text-align: center; }
+
+        /* =========================================
+           CABEÇALHO E LOGOS
+        ========================================= */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 1000;
+            padding: 10px 0; 
+            transition: var(--transition);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-logo img {
+            height: 65px; 
+            width: auto;
+            object-fit: contain;
+        }
+
+        /* =========================================
+           BOTÕES PREMIUM (DOURADO)
+        ========================================= */
+        .btn-gold {
+            display: inline-block;
+            background: linear-gradient(135deg, #E6C25A 0%, #D4AF37 100%);
+            color: #111;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 800;
+            padding: 20px 40px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+        }
+
+        .btn-nav {
+            padding: 10px 24px;
+            font-size: 0.85rem;
+            max-width: max-content;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
+        }
+
+        .btn-gold::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; width: 50%; height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-25deg);
+            animation: shine 4s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            20% { left: 200%; }
+            100% { left: 200%; }
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.5);
+        }
+
+        /* =========================================
+           ANIMAÇÃO DE SCROLL (REVEAL)
+        ========================================= */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =========================================
+           SEÇÕES
+        ========================================= */
+        .section-padding { padding: 6rem 0; }
+        .section-title { font-size: 2.2rem; font-weight: 800; margin-bottom: 3rem; text-transform: uppercase; letter-spacing: -0.5px; }
+        
+        /* 1. HERO SECTION (AQUAMARINE) */
+        .hero {
+            background-color: var(--aqua-light); 
+            color: var(--text-dark); 
+            padding: 9rem 0 7rem 0;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9InJnYmEoMCwwLDAsMC4wMikiLz48L3N2Zz4=');
+            pointer-events: none;
+        }
+
+        .hero .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+            width: 100%;
+        }
+
+        /* TÍTULO PRINCIPAL: Ajustado para acomodar as 3 linhas de forma elegante */
+        .hero-headline {
+            font-size: clamp(1.8rem, 3.5vw, 2.4rem); 
+            font-weight: 900;
+            line-height: 1.25; /* Respiro entre as linhas */
+            margin-bottom: 1.5rem;
+            color: var(--text-dark); 
+        }
+
+        .hero-subheadline {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: 2.5rem;
+            color: var(--text-muted); 
+        }
+
+        .hero-media {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-product-img {
+            max-width: 320px;
+            width: 100%;
+            filter: drop-shadow(0px 20px 30px rgba(0,0,0,0.1));
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* 2. VIDEO SECTION */
+        .video-section {
+            background-color: #FFFFFF; 
+            padding: 5rem 0 6rem 0;
+            position: relative;
+        }
+        
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .video-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-strong);
+            border: 2px solid var(--gold);
+            background: #000;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .video-wrapper:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 60px rgba(212, 175, 55, 0.15);
+        }
+
+        .video-wrapper video { 
+            width: 100%; 
+            display: block; 
+            outline: none;
+        }
+
+        /* 3. SINAIS (CARDS MINIMALISTAS) */
+        .symptoms { background-color: var(--aqua-light); }
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        .card {
+            background: #FFFFFF;
+            padding: 2.5rem 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.03);
+            position: relative;
+            overflow: hidden;
+        }
+        .card:hover { transform: translateY(-5px); box-shadow: var(--shadow-strong); border-color: var(--gold);}
+        
+        .card-icon {
+            width: 45px; height: 45px;
+            margin-bottom: 1.5rem;
+        }
+        .card h3 { font-size: 1.15rem; color: var(--text-dark); font-weight: 700; }
+
+        /* 4. POR QUE É IMPORTANTE */
+        .importance {
+            background-color: #FFFFFF;
+            border-top: 1px solid rgba(0,0,0,0.03);
+            border-bottom: 1px solid rgba(0,0,0,0.03);
+        }
+        .list-elegant {
+            list-style: none;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .list-elegant li {
+            padding: 1.5rem 2rem;
+            background: var(--aqua-light);
+            margin-bottom: 1rem;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            transition: var(--transition);
+            border-left: 4px solid transparent;
+        }
+        .list-elegant li:hover { transform: scale(1.02); box-shadow: var(--shadow-soft); border-left-color: var(--gold); background: #fff;}
+        .check-icon { fill: var(--gold); width: 28px; height: 28px; flex-shrink: 0; }
+
+        /* 5. HIGHLIGHT BANNER (AQUAMARINE) */
+        .highlight-banner {
+            background-color: var(--aqua-accent); 
+            padding: 5rem 2rem;
+            text-align: center;
+            color: var(--text-dark); 
+            border-top: 1px solid rgba(0,0,0,0.05);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .highlight-banner h2 {
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            font-weight: 400;
+            font-style: italic;
+            line-height: 1.5;
+            letter-spacing: 0.5px;
+            color: var(--text-dark);
+        }
+
+        /* 6. BENEFÍCIOS */
+        .benefits-section { background-color: #FFFFFF; }
+
+        /* 7. OFERTA (PREMIUM BOX) */
+        .offer-section { background-color: var(--aqua-light); }
+        .premium-offer-box {
+            background: #fff;
+            border-radius: var(--radius-lg);
+            padding: 4rem 3rem;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.05);
+            border: 2px solid var(--gold);
+            position: relative;
+        }
+        .premium-offer-box::before {
+            content: 'CONDIÇÃO EXCLUSIVA';
+            position: absolute;
+            top: -15px; left: 50%;
+            transform: translateX(-50%);
+            background: var(--gold);
+            color: #000;
+            font-weight: 800;
+            font-family: 'Montserrat', sans-serif;
+            padding: 8px 24px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+        .premium-offer-box img { max-width: 250px; margin: 0 auto 2rem auto; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1)); }
+        
+        .offer-name { font-size: 1.8rem; font-weight: 900; color: var(--text-dark); margin-bottom: 5px; }
+        .offer-details { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 1rem; }
+        
+        .offer-old-price {
+            font-size: 1.2rem;
+            color: #e74c3c;
+            text-decoration: line-through;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        .offer-price { 
+            font-size: 4rem; 
+            font-weight: 900; 
+            color: var(--text-dark); 
+            line-height: 1; 
+            margin-bottom: 0.5rem; 
+            font-family: 'Montserrat', sans-serif;
+        }
+        .offer-price span { font-size: 1.8rem; font-weight: 700; color: var(--gold); vertical-align: super; }
+        
+        .free-shipping {
+            display: inline-block;
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            border: 1px solid #c8e6c9;
+        }
+
+        .distributor { margin-top: 2rem; font-size: 0.85rem; color: #999; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* 8. FAQ (CLEAN ACCORDION) */
+        .faq-section { background-color: #FFFFFF; }
+        .faq-container { max-width: 800px; margin: 0 auto; }
+        .faq-item {
+            border-bottom: 1px solid #E0E0E0;
+            margin-bottom: 10px;
+        }
+        .faq-question {
+            padding: 1.5rem 0;
+            font-size: 1.1rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--text-dark);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+        .faq-question:hover { color: var(--gold); }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            color: var(--text-muted);
+        }
+        .faq-item.active .faq-answer { padding-bottom: 1.5rem; }
+        .faq-icon {
+            font-size: 1.5rem;
+            font-weight: 300;
+            transition: transform 0.4s;
+            color: var(--gold);
+        }
+        .faq-item.active .faq-icon { transform: rotate(45deg); }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--aqua-light); 
+            color: var(--text-muted); 
+            text-align: center;
+            padding: 4rem 20px 3rem 20px;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* ESTILOS DOS CRÉDITOS VOXO ESTÚDIO */
+        .footer-credits {
+            margin-top: 1.5rem;
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        .footer-credits a {
+            color: var(--gold-hover); 
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-credits a:hover {
+            color: var(--gold);
+            text-decoration: underline;
+        }
+
+        /* =========================================
+           RESPONSIVIDADE (MOBILE)
+        ========================================= */
+        @media (max-width: 992px) {
+            .hero { min-height: auto; padding-top: 8rem; }
+            .hero .container { grid-template-columns: 1fr; text-align: center; gap: 2rem; }
+            .hero-media { margin-top: 1rem; }
+            .btn-gold { margin: 0 auto; }
+        }
+
+        @media (max-width: 768px) {
+            .section-padding { padding: 4rem 0; }
+            .premium-offer-box { padding: 3rem 1.5rem; }
+            .video-section { padding: 3rem 0; }
+            
+            .nav-logo img { height: 48px; } 
+            
+            .btn-nav { padding: 8px 16px; font-size: 0.75rem; }
+            
+            body { font-size: 0.9rem; } 
+            
+            /* TÍTULO NO MOBILE */
+            .hero-headline { font-size: 1.6rem; } 
+            
+            .hero-subheadline { font-size: 1rem; }
+            .section-title { font-size: 1.5rem; margin-bottom: 2rem;}
+            .btn-gold { font-size: 0.95rem; padding: 15px 30px; }
+            
+            .offer-old-price { font-size: 1.1rem; }
+            .offer-price { font-size: 2.8rem; } 
+            .free-shipping { font-size: 0.85rem; }
+            
+            .faq-question { font-size: 0.95rem; padding: 1.2rem 0; }
+            .list-elegant li { font-size: 0.95rem; padding: 1rem 1.5rem; }
+            .card h3 { font-size: 1rem; }
+            .video-title { font-size: 1.2rem; }
+            .highlight-banner h2 { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="nav-logo">
+                <img src="https://voxoestudio.com.br/wp-content/uploads/2026/03/logo_atlantica-removebg-preview.png" alt="Atlântica Natural">
+            </a>
+            <a href="#oferta" class="btn-gold btn-nav">Comprar</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <div class="hero-text reveal">
+                <h1 class="hero-headline">
+                    CANSAÇO CONSTANTE<br>
+                    DORES MUSCULARES<br>
+                    DIFICULDADE PARA DORMIR
+                </h1>
+                <p class="hero-subheadline">Recupere sua disposição com uma fórmula completa de 5 tipos de Magnésio em uma única cápsula.</p>
+                <a href="#oferta" class="btn-gold">QUERO COMEÇAR AGORA</a>
+            </div>
+            
+            <div class="hero-media reveal" style="transition-delay: 0.2s;">
+                <img src="https://voxoestudio.com.br/wp-content/uploads/2026/03/WhatsApp_Image_2026-03-02_at_18.06.40-removebg-preview.png" alt="5 Magnésios Atlântica Natural" class="hero-product-img">
+            </div>
+        </div>
+    </header>
+
+    <section class="video-section">
+        <div class="container text-center">
+            <h2 class="video-title reveal">Descubra o poder do 5 Magnésios</h2>
+            
+            <div class="video-wrapper reveal" style="transition-delay: 0.1s;">
+                <video autoplay muted loop playsinline controls controlsList="nodownload" preload="metadata" poster="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='450'><rect width='800' height='450' fill='%23B2DFDB'/></svg>">
+                    <source src="https://voxoestudio.com.br/wp-content/uploads/2026/03/Cota-aqui-pra-gente-se-voce-ja-conhece-o-5-Magnesio-da-Atlantica-Natural-Magnesio-atlanticana-1.mp4" type="video/mp4">
+                    Seu navegador não suporta vídeos HTML5.
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <section class="symptoms section-padding">
+        <div class="container">
+            <h2 class="section-title text-center reveal">SINAIS DE FALTA DE MAGNÉSIO</h2>
+            <div class="grid-cards">
+                <div class="card reveal">
+                    <svg class="card-icon" fill="none" stroke="#D4AF37" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <h3>Cansaço mesmo depois de dormir</h3>
+                </div>
+                <div class="card reveal" style="transition-delay: 0.1s;">
+                    <svg class="card-icon" fill="none" stroke="#D4AF37" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    <h3>Irritação ou ansiedade</h3>
+                </div>
+                <div class="card reveal" style="transition-delay: 0.2s;">
+                    <svg class="card-icon" fill="none" stroke="#D4AF37" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                    <h3>Dificuldade para dormir profundamente</h3>
+                </div>
+                <div class="card reveal" style="transition-delay: 0.3s;">
+                    <svg class="card-icon" fill="none" stroke="#D4AF37" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                    <h3>Cãibras ou tensão muscular</h3>
+                </div>
+                <div class="card reveal" style="transition-delay: 0.4s;">
+                    <svg class="card-icon" fill="none" stroke="#D4AF37" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+                    <h3>Falta de foco e energia</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="importance section-padding">
+        <div class="container">
+            <h2 class="section-title text-center reveal">POR QUE O MAGNÉSIO É TÃO IMPORTANTE?</h2>
+            <ul class="list-elegant">
+                <li class="reveal">
+                    <svg class="check-icon" viewBox="0 0 24 24"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-.997-6l7.07-7.071-1.414-1.414-5.656 5.657-2.829-2.829-1.414 1.414L11.003 16z"/></svg>
+                    Participa de mais de 300 reações no organismo
+                </li>
+                <li class="reveal" style="transition-delay: 0.1s;">
+                    <svg class="check-icon" viewBox="0 0 24 24"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-.997-6l7.07-7.071-1.414-1.414-5.656 5.657-2.829-2.829-1.414 1.414L11.003 16z"/></svg>
+                    Ajuda no funcionamento muscular e nervoso
+                </li>
+                <li class="reveal" style="transition-delay: 0.2s;">
+                    <svg class="check-icon" viewBox="0 0 24 24"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-.997-6l7.07-7.071-1.414-1.414-5.656 5.657-2.829-2.829-1.414 1.414L11.003 16z"/></svg>
+                    Contribui para o equilíbrio emocional
+                </li>
+                <li class="reveal" style="transition-delay: 0.3s;">
+                    <svg class="check-icon" viewBox="0 0 24 24"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-.997-6l7.07-7.071-1.414-1.414-5.656 5.657-2.829-2.829-1.414 1.414L11.003 16z"/></svg>
+                    Auxilia na qualidade do sono
+                </li>
+                <li class="reveal" style="transition-delay: 0.4s;">
+                    <svg class="check-icon" viewBox="0 0 24 24"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-.997-6l7.07-7.071-1.414-1.414-5.656 5.657-2.829-2.829-1.414 1.414L11.003 16z"/></svg>
+                    Ajuda na produção de energia
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="highlight-banner">
+        <h2 class="reveal">"Cada tipo de Magnésio atua de forma diferente no organismo. Juntos, oferecem melhor absorção e ação mais completa."</h2>
+    </section>
+
+    <section class="benefits-section section-padding">
+        <div class="container">
+            <h2 class="section-title text-center reveal">COMO VOCÊ PODE SE SENTIR USANDO 5 MAGNÉSIOS</h2>
+            <div class="grid-cards">
+                <div class="card reveal" style="border-top: 4px solid var(--gold);">
+                    <svg class="card-icon" fill="none" stroke="#D4AF37" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <h3>Mais disposição no dia a dia</h3>
+                </div>
+                <div class="card reveal" style="border-top: 4px solid var(--gold); transition-delay: 0.1s;">
+                    <svg class="card-icon" fill="none" stroke="#D4AF37" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                    <h3>Sono mais profundo e reparador</h3>
+                </div>
+                <div class="card reveal" style="border-top: 4px solid var(--gold); transition-delay: 0.2s;">
+                    <svg class="card-icon" fill="none" stroke="#D4AF37" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                    <h3>Redução da tensão muscular</h3>
+                </div>
+                <div class="card reveal" style="border-top: 4px solid var(--gold); transition-delay: 0.3s;">
+                    <svg class="card-icon" fill="none" stroke="#D4AF37" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path></svg>
+                    <h3>Mais equilíbrio emocional</h3>
+                </div>
+                <div class="card reveal" style="border-top: 4px solid var(--gold); transition-delay: 0.4s;">
+                    <svg class="card-icon" fill="none" stroke="#D4AF37" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+                    <h3>Mais foco e clareza mental</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="oferta" class="offer-section section-padding">
+        <div class="container">
+            <h2 class="section-title text-center reveal">COMECE A CUIDAR DA SUA SAÚDE HOJE</h2>
+            
+            <div class="premium-offer-box reveal">
+                <img src="https://voxoestudio.com.br/wp-content/uploads/2026/03/WhatsApp_Image_2026-03-02_at_18.06.40-removebg-preview.png" alt="5 Magnésios - 30 cápsulas">
+                
+                <div class="offer-name">5 Magnésios</div>
+                <div class="offer-details">30 cápsulas exclusivas</div>
+                
+                <div class="offer-old-price">De R$ 99,80</div>
+                <div class="offer-price"><span>por apenas R$</span> 69,98</div>
+                <div class="free-shipping"> FRETE GRÁTIS</div>
+                
+                <br>
+                <a href="https://wa.me/5548974002298" target="_blank" class="btn-gold">GARANTIR MEU FRASCO</a>
+                
+                <div class="distributor">
+                    Distribuição por Andrea do Valle - Atlântica Natural
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section section-padding">
+        <div class="container faq-container reveal">
+            <h2 class="section-title text-center">PERGUNTAS FREQUENTES</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">Em quanto tempo começo a sentir os efeitos? <span class="faq-icon">+</span></div>
+                <div class="faq-answer">
+                    Os resultados variam, mas muitas pessoas relatam melhora nas primeiras semanas.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Como devo tomar? <span class="faq-icon">+</span></div>
+                <div class="faq-answer">
+                    Conforme orientação do rótulo ou recomendação profissional.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Posso usar com outros suplementos? <span class="faq-icon">+</span></div>
+                <div class="faq-answer">
+                    Em geral sim, mas consulte um profissional de saúde se estiver em tratamento.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Tem contraindicação? <span class="faq-icon">+</span></div>
+                <div class="faq-answer">
+                    Gestantes, lactantes e pessoas com condições específicas devem consultar médico antes do uso.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Atlântica Natural. Todos os direitos reservados.</p>
+            <div class="footer-credits">
+                Desenvolvido por <a href="https://wa.me/5548974002298" target="_blank" rel="noopener noreferrer">VOXO ESTÚDIO</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // SCROLL REVEAL SUAVE
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+            revealElements.forEach(el => revealObserver.observe(el));
+
+            // SCROLL SUAVE PARA LINKS INTERNOS (Botões que rolam a tela)
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    if (this.getAttribute('href').startsWith('#')) {
+                        e.preventDefault();
+                        const targetId = this.getAttribute('href');
+                        const target = document.querySelector(targetId);
+                        if(target) {
+                            const headerOffset = 70;
+                            const elementPosition = target.getBoundingClientRect().top;
+                            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                            window.scrollTo({
+                                top: offsetPosition,
+                                behavior: "smooth"
+                            });
+                        }
+                    }
+                });
+            });
+
+            // ACORDEÃO DO FAQ
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+                    
+                    faqItems.forEach(faq => {
+                        faq.classList.remove('active');
+                        faq.querySelector('.faq-answer').style.maxHeight = null;
+                        faq.querySelector('.faq-icon').textContent = '+';
+                    });
+
+                    if (!isActive) {
+                        item.classList.add('active');
+                        const answer = item.querySelector('.faq-answer');
+                        answer.style.maxHeight = answer.scrollHeight + "px";
+                        item.querySelector('.faq-icon').textContent = '+'; 
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
